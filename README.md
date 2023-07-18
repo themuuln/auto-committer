@@ -30,7 +30,22 @@ To experience the magic of daily automation, follow these simple steps:
 | +----------- Hour (0 - 23)
 +------------- Minute (0 - 59)
 ```
+
 3. **Make it Yours**: Customize the automation to your liking. You can update files, run tests, or add other tasks to the workflow to match your personal project needs.
+
+## Improvement Ideas
+
+To enhance the Auto-Committer workflow, we made several improvements:
+
+1. **Use GitHub Secrets**: Git credentials (username and email) are securely stored as GitHub Secrets for a safer workflow.
+
+2. **Limit Commits**: Automated commits are now limited to specific intervals (06:00 AM - 06:00 PM UTC) to avoid excessive commits.
+
+3. **Commit Timestamp**: Commit messages now include the timestamp for each automated commit.
+
+4. **Error Handling**: Added error handling to gracefully handle potential issues during the workflow execution.
+
+5. **Commit Interval Tracking**: The workflow now tracks the last commit time and enforces a commit limit interval to prevent overcommitting.
 
 ## Contributing
 
