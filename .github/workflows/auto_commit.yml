@@ -2,7 +2,7 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: '*/1 * * * *'
+    - cron: '*/1 * * * *' # Schedule the workflow to run every three hours
 
 jobs:
   build:
@@ -19,16 +19,17 @@ jobs:
 
       - name: Clone repository
         run: |
-          git clone https://github.com/themuuln/auto-committer
+          git clone https://github.com/themuuln/auto-committer.git
         env:
           REPO_NAME: "auto-committer"
 
       - name: Commit and Push
         run: |
           cd "$REPO_NAME"
+          git checkout main  # Replace "main" with the correct default branch name
           for i in {1..20}; do
             echo "Automatic empty commit $i" >> empty-commit.txt
             git add empty-commit.txt
             git commit -m "Automatic empty commit $i"
-            git push origin master
+            git push origin main  # Replace "main" with the correct default branch name
           done
