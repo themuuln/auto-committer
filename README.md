@@ -16,7 +16,7 @@
 
 ## How it Works
 
-Auto-Committer is a GitHub Action that automates daily commits to your repository. Every day at a scheduled time, it creates a series of empty commits to keep your commit history fresh and active. While the commits are empty and playful in nature, they serve as a motivational reminder to stay committed to your coding endeavors.
+Auto-Committer is a GitHub Action that automates daily commits to your repository. Every three hours, it creates a series of empty commits to keep your commit history fresh and active. While the commits are empty and playful in nature, they serve as a motivational reminder to stay committed to your coding endeavors.
 
 ## Getting Started
 
@@ -24,10 +24,10 @@ To experience the magic of daily automation, follow these simple steps:
 
 1. **Fork this Repository**: Start by forking this repository to make it your own.
 
-2. **Configure the Schedule**: Customize the scheduled time for daily commits in the `.github/workflows/daily_commit.yml` file. By default, commits are scheduled for midnight UTC.
+2. **Configure the Schedule**: Customize the scheduled time for daily commits in the `.github/workflows/auto_commit.yml` file. By default, the workflow runs every three hours (e.g., 0:00 AM, 3:00 AM, 6:00 AM, ...).
 
 ```
-* * * * *
+* */3 * * *
 | | | | |
 | | | | +----- Day of the week (0 - 7) (Sunday is both 0 and 7)
 | | | +------- Month (1 - 12)
@@ -42,15 +42,13 @@ To experience the magic of daily automation, follow these simple steps:
 
 To enhance the Auto-Committer workflow, we made several improvements:
 
-1. **Use GitHub Secrets**: Git credentials (username and email) are securely stored as GitHub Secrets for a safer workflow.
+- **Use GitHub Secrets**: Git credentials (username and email) and the Personal Access Token (PAT) are securely stored as GitHub Secrets for a safer workflow.
 
-2. **Limit Commits**: Automated commits are now limited to specific intervals (06:00 AM - 06:00 PM UTC) to avoid excessive commits.
+- **Limit Commits**: Automated commits are now limited to specific intervals (06:00 AM - 06:00 PM UTC) to avoid excessive commits.
 
-3. **Commit Timestamp**: Commit messages now include the timestamp for each automated commit.
+- **Commit Timestamp**: Each automated commit includes the timestamp of when it was made, making it easier to track commit times.
 
-4. **Error Handling**: Added error handling to gracefully handle potential issues during the workflow execution.
-
-5. **Commit Interval Tracking**: The workflow now tracks the last commit time and enforces a commit limit interval to prevent overcommitting.
+- **Commit Interval Tracking**: The workflow now tracks the last commit time and enforces a commit limit interval to prevent overcommitting.
 
 ## Contributing
 
