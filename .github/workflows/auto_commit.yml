@@ -2,7 +2,7 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: '*/1 * * * *' # Schedule the workflow to run every minutes
+    - cron: '*/5 * * * *' # Schedule the workflow to run every minutes
 
 jobs:
   build:
