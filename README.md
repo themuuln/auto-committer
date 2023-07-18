@@ -1,7 +1,7 @@
 # Personal Daily GitHub Automation 🤖
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/themuuln/daily-commit/Build%20and%20Deploy?label=GitHub%20Actions&logo=github&style=flat-square)
-![License](https://img.shields.io/github/license/themuuln/daily-commit?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/themuuln/daily-committer/Build%20and%20Deploy?label=GitHub%20Actions&logo=github&style=flat-square)
+![License](https://img.shields.io/github/license/themuuln/daily-committer?style=flat-square)
 ![GitHub stars](https://img.shields.io/github/stars/themuuln/daily-commit?style=flat-square)
 ![GitHub forks](https://img.shields.io/github/forks/themuuln/daily-commit?style=flat-square)
 
