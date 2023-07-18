@@ -1,73 +1,34 @@
-<div align="center">
-  <h1>Project Name 🚀</h1>
-  <img src="path/to/project-logo.png" alt="Project Logo" width="200">
-  <p>One-liner project description.</p>
-  <p>
-    <a href="https://github.com/your-username/your-repo-name">View Demo</a> ·
-    <a href="https://github.com/your-username/your-repo-name/issues">Report Bug</a> ·
-    <a href="https://github.com/your-username/your-repo-name/pulls">Contribute</a>
-  </p>
-</div>
+# Personal Daily GitHub Automation 🤖
 
-## Table of Contents 📜
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/themuuln/daily-commit/Build%20and%20Deploy?label=GitHub%20Actions&logo=github&style=flat-square)
+![License](https://img.shields.io/github/license/themuuln/daily-commit?style=flat-square)
+![GitHub stars](https://img.shields.io/github/stars/themuuln/daily-commit?style=flat-square)
+![GitHub forks](https://img.shields.io/github/forks/themuuln/daily-commit?style=flat-square)
 
-- [About](#about)
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+Welcome to **themuuln's Personal Daily GitHub Automation** project! This repository is designed to bring life and consistency to your GitHub activity through daily automated commits. Stay engaged and enjoy a vibrant coding journey with consistent updates, making your repository an exciting and active place.
 
-## About
+## How it Works
 
-A short introduction to your project, explaining its purpose, benefits, and what makes it stand out. Showcase its uniqueness and potential impact.
-
-## Features
-
-- List key features and functionalities of your project.
-- Use bullet points for easy readability.
+Every day at a scheduled time, this project automatically creates a series of empty commits to keep your repository's commit history fresh and active. While the commits are empty and playful in nature, they serve as a motivational reminder to stay committed to your coding endeavors.
 
 ## Getting Started
 
-### Prerequisites
+To experience the magic of daily automation, follow these simple steps:
 
-Clearly mention any prerequisites or dependencies required to use your project. Provide links to relevant resources or tutorials if necessary.
+1. **Fork this Repository**: Start by forking this repository to make it your own.
 
-### Installation
+2. **Configure the Schedule**: Customize the scheduled time for daily commits in the `.github/workflows/daily_commit.yml` file. By default, commits are scheduled for midnight UTC.
 
-Step-by-step instructions on how to install and set up your project locally.
-
-### Usage
-
-Provide examples or instructions on how to use your project effectively. Include code snippets or usage demos to guide users.
+3. **Make it Yours**: Customize the automation to your liking. You can update files, run tests, or add other tasks to the workflow to match your personal project needs.
 
 ## Contributing
 
-Encourage contributions and provide guidelines on how to do so. Explain the contribution workflow and how to submit pull requests.
-
-### Development Setup
-
-Help contributors set up their development environment. Include any required tools or libraries and instructions on running tests.
-
-### Code Style
-
-If applicable, mention any code style guidelines or linting rules contributors should follow.
-
-### Issues and Bug Reports
-
-Guide users on how to report issues or bugs effectively, including the use of issue templates.
-
-### Pull Request Guidelines
-
-Explain how to submit a pull request, what to include in the description, and how to get it reviewed.
+Contributions to this project are welcome! If you have ideas to improve the automation or enhance the experience, feel free to open an issue or submit a pull request.
 
 ## License
 
-Mention the project's license and provide a link to the license file.
+This project is licensed under the [MIT License](LICENSE), allowing you to use and modify the code freely.
 
----
+## Join the Fun! 🚀✨
 
-<div align="center">
-  <p>If you find this project helpful, please consider giving it a ⭐️</p>
-  <p>Follow me on GitHub <a href="https://github.com/your-username">here</a></p>
-</div>
+Let's create an exciting and active GitHub journey together! Join [@themuuln](https://github.com/themuuln) now, and let this automation add a dash of energy to your coding adventures. Happy automating! 🤖✨
