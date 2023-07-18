@@ -2,7 +2,7 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: "26 18 * * *"
+    - cron: "45 18 * * *"
 
 jobs:
   build:
@@ -24,14 +24,31 @@ jobs:
             git add .
             git commit -m "Daily commit - $i/20 - $(date +'%Y-%m-%d %H:%M:%S')"
           done
-          
+
       - name: Push Commits
         run: |
           # Push all 20 commits to the repository
           git push
-          
-      - name: Send Notification
+
+      - name: Send Email Notification
         if: success()
-        run: |
-          # Send notification to Slack or Discord (Replace with your notification command)
-          echo "Daily Commits completed successfully! 20 changes committed."          
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GMAIL_PASSWORD }}
+          subject: "Daily Commits Completed Successfully"
+          to: zerone.offical@gmail.com
+          from: your_email@example.com
+          message: |
+            Hi there!
+
+            Your daily commits have been completed successfully! 🎉🚀
+
+            A total of 20 changes were committed to your repository.
+
+            Keep up the great work and happy coding!
+
+            Best regards,
+            Your GitHub Automation
