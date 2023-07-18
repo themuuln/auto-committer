@@ -40,7 +40,7 @@ jobs:
           password: ${{ secrets.GMAIL_PASSWORD }}
           subject: "Daily Commits Completed Successfully"
           to: zerone.offical@gmail.com
-          from: your_email@example.com
+          from: ${{ secrets.GMAIL_USERNAME }}
           message: |
             Hi there!
 
