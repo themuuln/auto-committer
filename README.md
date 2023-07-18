@@ -1,15 +1,17 @@
-# Personal Daily GitHub Automation 🤖
-
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/themuuln/daily-committer/Build%20and%20Deploy?label=GitHub%20Actions&logo=github&style=flat-square)
-![License](https://img.shields.io/github/license/themuuln/daily-committer?style=flat-square)
-![GitHub stars](https://img.shields.io/github/stars/themuuln/daily-commit?style=flat-square)
-![GitHub forks](https://img.shields.io/github/forks/themuuln/daily-commit?style=flat-square)
-
-Welcome to **themuuln's Personal Daily GitHub Automation** project! This repository is designed to bring life and consistency to your GitHub activity through daily automated commits. Stay engaged and enjoy a vibrant coding journey with consistent updates, making your repository an exciting and active place.
+<div align="center">
+  <h1>Auto-Committer 🤖</h1>
+  <img src="https://raw.githubusercontent.com/themuuln/auto-committer/main/assets/logo.png" alt="Auto-Committer Logo" width="200">
+  <p>Automate your GitHub commits and keep your repository history active!</p>
+  <p>
+    <a href="https://github.com/themuuln/auto-committer/actions">View Actions</a> ·
+    <a href="https://github.com/themuuln/auto-committer/issues">Report Bug</a> ·
+    <a href="https://github.com/themuuln/auto-committer/pulls">Contribute</a>
+  </p>
+</div>
 
 ## How it Works
 
-Every day at a scheduled time, this project automatically creates a series of empty commits to keep your repository's commit history fresh and active. While the commits are empty and playful in nature, they serve as a motivational reminder to stay committed to your coding endeavors.
+Auto-Committer is a GitHub Action that automates daily commits to your repository. Every day at a scheduled time, it creates a series of empty commits to keep your commit history fresh and active. While the commits are empty and playful in nature, they serve as a motivational reminder to stay committed to your coding endeavors.
 
 ## Getting Started
 
@@ -29,6 +31,9 @@ Contributions to this project are welcome! If you have ideas to improve the auto
 
 This project is licensed under the [MIT License](LICENSE), allowing you to use and modify the code freely.
 
-## Join the Fun! 🚀✨
+---
 
-Let's create an exciting and active GitHub journey together! Join [@themuuln](https://github.com/themuuln) now, and let this automation add a dash of energy to your coding adventures. Happy automating! 🤖✨
+<div align="center">
+  <p>If you find this project helpful, please consider giving it a ⭐️</p>
+  <p>Follow me on GitHub <a href="https://github.com/themuuln">here</a></p>
+</div>
