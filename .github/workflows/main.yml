@@ -1,0 +1,34 @@
+name: Auto Committer 
+
+on:
+  schedule:
+    - cron: '30 23 * * *' # Schedule the workflow to run every three hours
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Git
+        uses: actions/checkout@v2
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'themuuln'
+          git config --global user.email 'zerone.offical@gmail.com'
+
+      - name: Clone repository
+        run: |
+          git clone https://github.com/themuuln/auto-committer
+        env:
+          REPO_NAME: "auto-committer"
+
+      - name: Commit and Push
+        run: |
+          cd "$REPO_NAME"
+          for i in {1..20}; do
+            echo "Automatic empty commit $i" >> empty-commit.txt
+            git add empty-commit.txt
+            git commit -m "Automatic empty commit $i"
+            git push origin master
+          done
