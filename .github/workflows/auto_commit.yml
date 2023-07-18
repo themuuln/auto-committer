@@ -2,34 +2,60 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: '*/5 * * * *' # Schedule the workflow to run every minutes
+    - cron: '*/5 * * * *' # Schedule the workflow to run every 5 minutes
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up Git
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: Configure Git
         run: |
-          git config --global user.name 'themuuln'
-          git config --global user.email 'zerone.offical@gmail.com'
+          git config --global user.name ${{ secrets.GH_USERNAME }}
+          git config --global user.email ${{ secrets.GH_EMAIL }}
 
-      - name: Clone repository
+      - name: Clone Repository Locally
         run: |
           git clone https://github.com/themuuln/auto-committer.git
         env:
           REPO_NAME: "auto-committer"
 
-      - name: Commit and Push
+      - name: Limit the Number of Commits
+        run: |
+          if [[ "$(date '+%H')" -lt "06" || "$(date '+%H')" -ge "18" ]]; then
+            echo "Automated commits allowed during 06:00 AM - 06:00 PM UTC."
+            exit 0
+          fi
+        continue-on-error: true
+
+      - name: Limit the Number of Commits (Read Timestamp)
+        id: check_timestamp
+        run: |
+          if [ ! -f last_commit_time.txt ]; then
+            echo "0" > last_commit_time.txt
+          fi
+          last_commit_time=$(cat last_commit_time.txt)
+          current_time=$(date '+%s')
+          time_diff=$((current_time - last_commit_time))
+          commit_limit_interval=1800 # 30 minutes (adjust as needed)
+          if [ $time_diff -lt $commit_limit_interval ]; then
+            echo "Commit limit exceeded. Wait until next interval."
+            exit 0
+          fi
+          echo "$current_time" > last_commit_time.txt
+        continue-on-error: true
+
+      - name: Commit and Push Changes
         run: |
           cd "$REPO_NAME"
-          git checkout main  # Replace "main" with the correct default branch name
-          for i in {1..20}; do
-            echo "Automatic empty commit $i" >> empty-commit.txt
-            git add empty-commit.txt
-            git commit -m "Automatic empty commit $i"
-            git push origin main  # Replace "main" with the correct default branch name
+          git checkout main
+          for i in {1..5}; do
+            commit_message="Automated commit at $(date '+%Y-%m-%d %H:%M:%S')"
+            echo "$commit_message" >> commit-log.txt
+            git add commit-log.txt
+            git commit -m "$commit_message"
+            git push origin main
           done
