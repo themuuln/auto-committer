@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Auto-Committer 🤖</h1>
-  <img src="https://raw.githubusercontent.com/themuuln/auto-committer/main/assets/logo.png" alt="Auto-Committer Logo" width="200">
+  <!-- <img src="https://raw.githubusercontent.com/themuuln/auto-committer/main/assets/logo.png" alt="Auto-Committer Logo" width="200"> -->
   <p>Automate your GitHub commits and keep your repository history active!</p>
   <p>
     <a href="https://github.com/themuuln/auto-committer/actions">View Actions</a> ·
