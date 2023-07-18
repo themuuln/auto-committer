@@ -21,6 +21,15 @@ To experience the magic of daily automation, follow these simple steps:
 
 2. **Configure the Schedule**: Customize the scheduled time for daily commits in the `.github/workflows/daily_commit.yml` file. By default, commits are scheduled for midnight UTC.
 
+```
+* * * * *
+| | | | |
+| | | | +----- Day of the week (0 - 7) (Sunday is both 0 and 7)
+| | | +------- Month (1 - 12)
+| | +--------- Day of the month (1 - 31)
+| +----------- Hour (0 - 23)
++------------- Minute (0 - 59)
+```
 3. **Make it Yours**: Customize the automation to your liking. You can update files, run tests, or add other tasks to the workflow to match your personal project needs.
 
 ## Contributing
