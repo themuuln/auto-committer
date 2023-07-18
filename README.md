@@ -7,6 +7,11 @@
     <a href="https://github.com/themuuln/auto-committer/issues">Report Bug</a> ·
     <a href="https://github.com/themuuln/auto-committer/pulls">Contribute</a>
   </p>
+  <p>
+    <a href="https://github.com/themuuln/auto-committer/actions/workflows/auto_commit.yml">
+      <img src="https://github.com/themuuln/auto-committer/actions/workflows/auto_commit.yml/badge.svg" alt="Auto Commit">
+    </a>
+  </p>
 </div>
 
 ## How it Works
