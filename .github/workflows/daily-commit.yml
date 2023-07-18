@@ -1,0 +1,31 @@
+name: Daily Commit
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git
+        run: |
+          git config --global user.name "Your GitHub Username"
+          git config --global user.email "your.email@example.com"
+
+      - name: Clone the repository
+        uses: actions/checkout@v2
+
+      - name: Modify File
+        run: |
+          # Modify an existing file (e.g., README.md)
+          echo "Updated by Daily Commit - $(date +'%Y-%m-%d')" >> README.md
+          git add .
+          git commit -m "Daily commit - $(date +'%Y-%m-%d')"
+          git push
+
+      - name: Send Notification
+        if: success()
+        run: |
+          # Send notification to Slack or Discord (Replace with your notification command)
+          echo "Daily Commit completed successfully! Changes committed."          
