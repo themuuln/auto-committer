@@ -1,54 +1,28 @@
-name: Daily Commit
+name: Auto Commit
 
 on:
   schedule:
-    - cron: "38 22 * * *"
+    # - cron: '0 */3 * * *' # Schedule the workflow to run every three hours
+    - cron: '22 23 * * *' # Schedule the workflow to run every three hours
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Set up Git
-        run: |
-          git config --global user.name "themuuln"
-          git config --global user.email "zerone.offical@gmail.com"
-
-      - name: Clone the repository
         uses: actions/checkout@v2
 
-      - name: Modify File and Commit
+      - name: Configure Git
+        run: |
+          git config --global user.name 'themuuln'
+          git config --global user.email 'zerone.offical@gmail.com'
+
+      - name: Commit and Push
         run: |
           for i in {1..20}; do
-            # Modify an existing file (e.g., README.md) and commit with a unique message
-            echo "Updated by Daily Commit - $(date +'%Y-%m-%d %H:%M:%S')" >> README.md
-            git add .
-            git commit -m "Daily commit - $i/20 - $(date +'%Y-%m-%d %H:%M:%S')"
+            echo "Automatic empty commit $i" >> empty-commit.txt
+            git add empty-commit.txt
+            git commit -m "Automatic empty commit $i"
+            git push
           done
-
-      - name: Push Commits
-        run: |
-          # Push all 20 commits to the repository
-          git push
-
-      - name: Send Email Notification
-        if: success()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 587
-          username: ${{ secrets.GMAIL_USERNAME }}
-          password: ${{ secrets.GMAIL_PASSWORD }}
-          subject: "Daily Commits Completed Successfully"
-          to: zerone.offical@gmail.com
-          from: themuuln.official@gmail.com
-          message: |
-            Hi there!
-
-            Your daily commits have been completed successfully! 🎉🚀
-
-            A total of 20 changes were committed to your repository.
-
-            Keep up the great work and happy coding!
-
-            Best regards,
-            Your GitHub Automation
