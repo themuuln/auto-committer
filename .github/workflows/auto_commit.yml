@@ -5,24 +5,39 @@ on:
     - cron: '*/5 * * * *' 
 
 jobs:
-  build:
+  auto_commit:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Configure Git
+      - name: Set up Git
         run: |
           git config --global user.name 'themuuln'
           git config --global user.email 'zerone.offical@gmail.com'
+          git config pull.rebase false
 
       - name: Push Empty Commits
         run: |
           cd $GITHUB_WORKSPACE
-          git checkout main
+          branch="main"
 
+          # Generate a single commit message for all the empty commits
+          timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+          commit_message="Automated empty commit at $timestamp"
+
+          # Pull the latest changes from the remote repository
+          git pull origin $branch --ff-only
+
+          # Push 5 empty commits with the same message
           for i in {1..5}; do
-            commit_message="Automated empty commit at $(date '+%Y-%m-%d %H:%M:%S')"
             git commit --allow-empty -m "$commit_message"
-            git push origin main
           done
+
+          # Push the commits to the remote repository
+          git push origin $branch
+
+      - name: Cleanup
+        run: |
+          git config --unset-all user.name
+          git config --unset-all user.email
