@@ -36,8 +36,3 @@ jobs:
 
           # Push the commits to the remote repository
           git push origin $branch
-
-      - name: Cleanup
-        run: |
-          git config --unset-all user.name
-          git config --unset-all user.email
