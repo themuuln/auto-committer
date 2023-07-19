@@ -24,7 +24,7 @@ jobs:
 
           # Generate a single commit message for all the empty commits
           timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-          commit_message="Automated empty commit at $timestamp"
+          commit_message="Automated empty commit at $timestamp by themuuln/auto-committer"
 
           # Pull the latest changes from the remote repository
           git pull origin $branch --ff-only
