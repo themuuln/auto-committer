@@ -7,7 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -16,51 +15,14 @@ jobs:
         run: |
           git config --global user.name 'themuuln'
           git config --global user.email 'zerone.offical@gmail.com'
-          git config --global credential.helper "store --file ~/.git-credentials"
-          echo "https://github.com/themuuln/auto-committer.git=token:${{ secrets.PAT_TOKEN }}" >> ~/.git-credentials
-        env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }} 
 
-
-      - name: Clone Repository Locally
+      - name: Push Empty Commits
         run: |
-          git clone https://github.com/themuuln/auto-committer.git
-        env:
-          REPO_NAME: "auto-committer"
-
-      - name: Limit the Number of Commits
-        run: |
-          if [[ "$(date '+%H')" -lt "06" || "$(date '+%H')" -ge "18" ]]; then
-            echo "Automated commits allowed during 06:00 AM - 06:00 PM UTC."
-            exit 0
-          fi
-        continue-on-error: true
-
-      - name: Limit the Number of Commits (Read Timestamp)
-        id: check_timestamp
-        run: |
-          if [ ! -f last_commit_time.txt ]; then
-            echo "0" > last_commit_time.txt
-          fi
-          last_commit_time=$(cat last_commit_time.txt)
-          current_time=$(date '+%s')
-          time_diff=$((current_time - last_commit_time))
-          commit_limit_interval=1800 # 30 minutes (adjust as needed)
-          if [ $time_diff -lt $commit_limit_interval ]; then
-            echo "Commit limit exceeded. Wait until next interval."
-            exit 0
-          fi
-          echo "$current_time" > last_commit_time.txt
-        continue-on-error: true
-
-      - name: Commit and Push Changes
-        run: |
-          cd "$REPO_NAME"
+          cd $GITHUB_WORKSPACE
           git checkout main
+
           for i in {1..5}; do
-            commit_message="Automated commit at $(date '+%Y-%m-%d %H:%M:%S')"
-            echo "$commit_message" >> commit-log.txt
-            git add commit-log.txt
-            git commit -m "$commit_message"
+            commit_message="Automated empty commit at $(date '+%Y-%m-%d %H:%M:%S')"
+            git commit --allow-empty -m "$commit_message"
             git push origin main
           done
