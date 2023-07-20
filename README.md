@@ -16,7 +16,7 @@
 
 ## How it Works
 
-Auto-Committer is a GitHub Action that automates daily commits to your repository. Every three hours, it creates a series of empty commits to keep your commit history fresh and active. While the commits are empty and playful in nature, they serve as a motivational reminder to stay committed to your coding endeavors.
+Auto-Committer is a GitHub Action that automates daily commits to your repository. Everyday, it creates a series of empty commits to keep your commit history fresh and active. While the commits are empty and playful in nature, they serve as a motivational reminder to stay committed to your coding endeavors.
 
 ## Getting Started
 
