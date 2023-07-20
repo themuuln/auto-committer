@@ -2,7 +2,7 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: '* */1.25 * * *' 
+    - cron: '* * */1 * *' 
 
 jobs:
   auto_commit:
@@ -30,7 +30,7 @@ jobs:
           git pull origin $branch --ff-only
 
           # Push 5 empty commits with the same message
-          for i in {1..5}; do
+          for i in {1..20}; do
             git commit --allow-empty -m "$commit_message"
           done
 
