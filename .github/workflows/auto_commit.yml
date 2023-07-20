@@ -2,7 +2,7 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: '* * */1 * *' 
+    - cron: '*/12 * * * *' 
 
 jobs:
   auto_commit:
@@ -22,17 +22,13 @@ jobs:
           cd $GITHUB_WORKSPACE
           branch="main"
 
-          # Generate a single commit message for all the empty commits
           timestamp=$(date '+%Y-%m-%d %H:%M:%S')
           commit_message="Automated empty commit at $timestamp by themuuln/auto-committer"
 
-          # Pull the latest changes from the remote repository
           git pull origin $branch --ff-only
 
-          # Push 5 empty commits with the same message
-          for i in {1..20}; do
+          for i in {1..10}; do
             git commit --allow-empty -m "$commit_message"
           done
 
-          # Push the commits to the remote repository
           git push origin $branch
