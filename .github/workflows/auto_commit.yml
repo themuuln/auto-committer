@@ -14,7 +14,9 @@ jobs:
       - name: Set up Git
         run: |
           git config --global user.name 'themuuln'
+          # Change this username above  ^^^^^^^^^
           git config --global user.email 'zerone.offical@gmail.com'
+          # Change this email above       ^^^^^^^^^^^^^^^^^^^^^^^^
           git config pull.rebase false
 
       - name: Push Empty Commits
