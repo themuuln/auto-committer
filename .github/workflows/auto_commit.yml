@@ -2,7 +2,7 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Schedule the workflow to run every hour.
+    - cron: '0 */2 * * *'  # Schedule the workflow to run every 2 hours.
 
 jobs:
   auto_commit:
@@ -19,18 +19,19 @@ jobs:
           # Change this email above       ^^^^^^^^^^^^^^^^^^^^^^^^
           git config pull.rebase false  # Disable pull rebase to avoid potential conflicts.
 
-      - name: Push Empty Commits
+      - name: Push Random Empty Commits
         run: |
           cd $GITHUB_WORKSPACE
           branch="main"
 
           timestamp=$(date '+%Y-%m-%d %H:%M:%S')  # Get the current timestamp.
-          commit_message="Automated empty commit at $timestamp by themuuln/auto-committer"  # Prepare commit message.
 
           git pull origin $branch --ff-only  # Ensure the local branch is up to date with the remote.
 
-          for i in {1..2}; do
-          # Change this ^^^ number above for commit count
+          commit_count=$((RANDOM % 4 + 2))  # Generate a random number between 2 to 5 for commit count.
+
+          for ((i=1; i<=commit_count; i++)); do
+            commit_message="Automated empty commit $i of $commit_count at $timestamp by themuuln/auto-committer"
             git commit --allow-empty -m "$commit_message"  # Create empty commits with the specified message.
           done
 
