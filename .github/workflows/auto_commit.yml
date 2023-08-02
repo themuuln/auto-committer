@@ -69,6 +69,8 @@ jobs:
 
       - name: Merge Pull Request
         uses: pascalgn/automerge-action@v0.14.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Delete Branch After Merge
         if: github.event_name == 'pull_request' && github.event.action == 'closed'
