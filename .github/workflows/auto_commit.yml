@@ -9,36 +9,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2  # Action to checkout the repository.
+        uses: actions/checkout@v2
         with:
-          ref: main  # Set the default branch to checkout here.
-
-      - name: Set up Git
-        run: |
-          git config --global user.name 'themuuln'
-          git config --global user.email 'zerone.offical@gmail.com'
-          git config pull.rebase false  # Disable pull rebase to avoid potential conflicts.
+          fetch-depth: 0  # Fetch all history for the default branch.
 
       - name: Generate Branch Name
         id: branch_name
         run: |
-          branch=$(date +'%Y_%m_%d')
+          branch=$(date +'%Y/%m/%d')
           echo "::set-output name=branch::$branch"
 
-      - name: Check if Branch Exists
+      - name: Check if Branch Exists or Create It
         run: |
           cd $GITHUB_WORKSPACE
           branch=${{ steps.branch_name.outputs.branch }}
 
-          if git ls-remote --heads origin $branch | grep -q $branch; then
-            echo "Branch $branch exists. Fetching and checking out..."
-            git fetch origin $branch
-            git checkout $branch
-          else
-            echo "Branch $branch does not exist. Creating and checking out..."
+          if ! git show-ref --quiet refs/heads/$branch; then
             git checkout -b $branch
             git push -u origin $branch
           fi
+
+          git fetch origin $branch
+          git checkout $branch
 
       - name: Push Random Empty Commits
         run: |
