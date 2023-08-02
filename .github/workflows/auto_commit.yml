@@ -10,19 +10,19 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2  # Action to checkout the repository.
+        with:
+          ref: main  # Set the default branch to checkout here.
 
       - name: Set up Git
         run: |
           git config --global user.name 'themuuln'
-          # Change this username above  ^^^^^^^^^
           git config --global user.email 'zerone.offical@gmail.com'
-          # Change this email above       ^^^^^^^^^^^^^^^^^^^^^^^^
           git config pull.rebase false  # Disable pull rebase to avoid potential conflicts.
 
       - name: Generate Branch Name
         id: branch_name
         run: |
-          branch="$(date +'%Y_%m_%d')"
+          branch=$(date +'%Y_%m_%d')
           echo "::set-output name=branch::$branch"
 
       - name: Check if Branch Exists
@@ -30,7 +30,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           branch=${{ steps.branch_name.outputs.branch }}
 
-          if git show-ref --quiet refs/heads/$branch; then
+          if git ls-remote --heads origin $branch | grep -q $branch; then
             echo "Branch $branch exists. Fetching and checking out..."
             git fetch origin $branch
             git checkout $branch
