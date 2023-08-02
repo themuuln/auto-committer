@@ -57,6 +57,9 @@ jobs:
 
           git push origin $branch  # Push the new empty commits to the remote repository.
 
+      - name: Set GITHUB_TOKEN environment variable
+        run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
