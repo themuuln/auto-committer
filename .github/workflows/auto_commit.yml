@@ -39,13 +39,16 @@ jobs:
 
           git push origin $branch  # Push the new empty commits to the remote repository.
 
+      - name: Set GITHUB_TOKEN environment variable
+        run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Automated pull request"
           title: "Auto Commit - $timestamp"
-          branch: my-feature-branch  # Change this to match the branch you want to work on.
+          branch: my-test-branch
 
       - name: Merge Pull Request
         uses: pascalgn/automerge-action@v0.14.0
