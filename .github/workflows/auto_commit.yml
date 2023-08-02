@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2  # Action to checkout the repository.
+        with:
+          ref: my-test-branch  # Specify the branch you want to check out here.
 
       - name: Set up Git
         run: |
@@ -22,7 +24,7 @@ jobs:
       - name: Push Random Empty Commits
         run: |
           cd $GITHUB_WORKSPACE
-          branch="main"
+          branch="my-test-branch"
 
           timestamp=$(date '+%Y-%m-%d %H:%M:%S')  # Get the current timestamp.
 
@@ -43,11 +45,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Automated pull request"
           title: "Auto Commit - $timestamp"
-          branch: $branch
+          branch: my-feature-branch  # Change this to match the branch you want to work on.
 
       - name: Merge Pull Request
-        uses: peter-evans/merge-pull-request@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.create_pull_request.outputs.pull-request-number }}
-          merge-method: 'merge' 
+        uses: pascalgn/automerge-action@v0.14.0
