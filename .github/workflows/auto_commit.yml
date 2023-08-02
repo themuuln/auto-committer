@@ -22,7 +22,7 @@ jobs:
       - name: Generate Branch Name
         id: branch_name
         run: |
-          branch="$(date +'%Y/%m/%d')"
+          branch="$(date +'%Y_%m_%d')"
           echo "::set-output name=branch::$branch"
 
       - name: Check if Branch Exists
