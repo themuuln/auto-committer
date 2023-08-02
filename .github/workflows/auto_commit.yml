@@ -31,7 +31,8 @@ jobs:
           branch=${{ steps.branch_name.outputs.branch }}
 
           if git show-ref --quiet refs/heads/$branch; then
-            echo "Branch $branch exists. Checking out..."
+            echo "Branch $branch exists. Fetching and checking out..."
+            git fetch origin $branch
             git checkout $branch
           else
             echo "Branch $branch does not exist. Creating and checking out..."
@@ -56,9 +57,6 @@ jobs:
           done
 
           git push origin $branch  # Push the new empty commits to the remote repository.
-
-      - name: Set GITHUB_TOKEN environment variable
-        run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
