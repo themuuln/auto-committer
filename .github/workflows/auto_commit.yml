@@ -1,49 +1,28 @@
-name: Auto Commit and Merge
+name: Auto Commit
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Schedule the workflow to run every 5 minutes.
+    - cron: '0 */2 * * *'  # Schedule the workflow to run every 2 hours.
 
 jobs:
-  auto_commit_and_merge:
+  auto_commit:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2  # Action to checkout the repository.
-        with:
-          ref: main  # Set the default branch to checkout here.
 
       - name: Set up Git
         run: |
           git config --global user.name 'themuuln'
+          # Change this username above  ^^^^^^^^^
           git config --global user.email 'zerone.offical@gmail.com'
+          # Change this email above       ^^^^^^^^^^^^^^^^^^^^^^^^
           git config pull.rebase false  # Disable pull rebase to avoid potential conflicts.
-
-      - name: Generate Branch Name
-        id: branch_name
-        run: |
-          branch=$(date +'%Y/%m/%d')
-          echo "::set-output name=branch::$branch"
-
-      - name: Check if Branch Exists
-        run: |
-          cd $GITHUB_WORKSPACE
-          branch=${{ steps.branch_name.outputs.branch }}
-
-          if git ls-remote --heads origin $branch | grep -q $branch; then
-            echo "Branch $branch exists. Fetching and checking out..."
-            git fetch origin $branch
-            git checkout $branch
-          else
-            echo "Branch $branch does not exist. Creating and checking out..."
-            git checkout -b $branch
-            git push -u origin $branch
-          fi
 
       - name: Push Random Empty Commits
         run: |
           cd $GITHUB_WORKSPACE
-          branch=${{ steps.branch_name.outputs.branch }}
+          branch="main"
 
           timestamp=$(date '+%Y-%m-%d %H:%M:%S')  # Get the current timestamp.
 
@@ -57,24 +36,3 @@ jobs:
           done
 
           git push origin $branch  # Push the new empty commits to the remote repository.
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Automated pull request"
-          title: "Auto Commit - $timestamp"
-          branch: ${{ steps.branch_name.outputs.branch }}
-          base: main  # Change this to the target branch where you want to create the pull request.
-
-      - name: Merge Pull Request
-        uses: pascalgn/automerge-action@v0.14.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Delete Branch After Merge
-        if: github.event_name == 'pull_request' && github.event.action == 'closed'
-        run: |
-          cd $GITHUB_WORKSPACE
-          branch=${{ steps.branch_name.outputs.branch }}
-          git push --delete origin $branch  # Remove the branch after merge
