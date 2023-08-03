@@ -1,8 +1,8 @@
-name: Diverse Contributions
+name: Auto Commit
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Schedule the workflow to run every 2 hours.
+    - cron: '0 */2 * * *'  # Schedule the workflow to run every 2 hours.
 
 jobs:
   auto_commit:
@@ -14,7 +14,9 @@ jobs:
       - name: Set up Git
         run: |
           git config --global user.name 'themuuln'
+          # Change this username above  ^^^^^^^^^
           git config --global user.email 'zerone.offical@gmail.com'
+          # Change this email above       ^^^^^^^^^^^^^^^^^^^^^^^^
           git config pull.rebase false  # Disable pull rebase to avoid potential conflicts.
 
       - name: Push Random Empty Commits
@@ -26,45 +28,11 @@ jobs:
 
           git pull origin $branch --ff-only  # Ensure the local branch is up to date with the remote.
 
-          # Generate a random number between 2 to 5 for commit count.
-          commit_count=$((RANDOM % 4 + 2))
-
-          commit_messages=("Added feature X" "Fixed bug Y" "Updated documentation" "Refactored code" "Improved performance" "Implemented user feedback")
+          commit_count=$((RANDOM % 4 + 2))  # Generate a random number between 2 to 5 for commit count.
 
           for ((i=1; i<=commit_count; i++)); do
-            commit_message="${commit_messages[$((RANDOM % ${#commit_messages[@]}))]}"
-            commit_message="$commit_message at $timestamp by themuuln/auto-committer"
+            commit_message="Automated empty commit $i of $commit_count at $timestamp by themuuln/auto-committer"
             git commit --allow-empty -m "$commit_message"  # Create empty commits with the specified message.
           done
 
           git push origin $branch  # Push the new empty commits to the remote repository.
-
-      - name: Create Random Pull Request
-        run: |
-          cd $GITHUB_WORKSPACE
-          branch="main"
-          pr_branch="feature/$(date '+%Y%m%d%H%M%S')"
-
-          git checkout -b $pr_branch  # Create a new branch for the pull request.
-
-          # Add some code changes to the branch.
-          echo "console.log('Pull Request change')" >> random_file.js
-
-          git add random_file.js
-          git commit -m "Adding pull request change at $timestamp by themuuln/auto-committer"
-          git push origin $pr_branch  # Push the changes to the new branch.
-
-          # Create the pull request using GitHub CLI.
-          gh pr create --base $branch --head $pr_branch --title "Random Pull Request $timestamp" --body "This is a random pull request created by the Auto Commit workflow."
-
-      - name: Create Random Issue
-        run: |
-          cd $GITHUB_WORKSPACE
-
-          # Generate a random number between 1 to 3 for issue count.
-          issue_count=$((RANDOM % 3 + 1))
-
-          # Create random issues using GitHub CLI.
-          for ((i=1; i<=issue_count; i++)); do
-            gh issue create --title "Random Issue $i $timestamp" --body "This is a random issue created by the Auto Commit workflow."
-          done
