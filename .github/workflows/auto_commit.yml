@@ -14,9 +14,7 @@ jobs:
       - name: Set up Git
         run: |
           git config --global user.name 'themuuln'
-          # Change this username above  ^^^^^^^^^
           git config --global user.email 'zerone.offical@gmail.com'
-          # Change this email above       ^^^^^^^^^^^^^^^^^^^^^^^^
           git config pull.rebase false  # Disable pull rebase to avoid potential conflicts.
 
       - name: Push Random Empty Commits
@@ -31,8 +29,12 @@ jobs:
           commit_count=$((RANDOM % 4 + 2))  # Generate a random number between 2 to 5 for commit count.
 
           for ((i=1; i<=commit_count; i++)); do
-            commit_message="Automated empty commit $i of $commit_count at $timestamp by themuuln/auto-committer"
-            git commit --allow-empty -m "$commit_message"  # Create empty commits with the specified message.
+            # Choose from a list of meaningful commit message prefixes
+            commit_prefix=("Fix" "Add" "Update" "Refactor" "Docs" "Test")
+            # Choose a random prefix from the list
+            random_prefix=${commit_prefix[$((RANDOM % ${#commit_prefix[@]}))]}
+            commit_message="$random_prefix: Automated commit $i of $commit_count at $timestamp by themuuln/auto-committer"
+            git commit --allow-empty -m "$commit_message"
           done
 
-          git push origin $branch  # Push the new empty commits to the remote repository.
+          git push origin $branch
