@@ -2,36 +2,34 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: '0 */2 * * *'  # Schedule the workflow to run every 2 hours.
+    - cron: "0 */2 * * *"
 
 jobs:
   auto_commit:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2  # Action to checkout the repository.
+      - name: Check Day of the Week
+        id: check_day
+        run: echo "::set-output name=day::$(date +%u)"
 
-      - name: Set up Git
+      - name: Conditional Workflow Run
+        if: ${{ steps.check_day.outputs.day != '6' && steps.check_day.outputs.day != '7' }}
         run: |
           git config --global user.name 'themuuln'
           git config --global user.email 'zerone.offical@gmail.com'
-          git config pull.rebase false  # Disable pull rebase to avoid potential conflicts.
+          git config pull.rebase false
 
-      - name: Push Random Empty Commits
-        run: |
           cd $GITHUB_WORKSPACE
           branch="main"
 
-          timestamp=$(date '+%Y-%m-%d %H:%M:%S')  # Get the current timestamp.
+          timestamp=$(date '+%Y-%m-%d %H:%M:%S')
 
-          git pull origin $branch --ff-only  # Ensure the local branch is up to date with the remote.
+          git pull origin $branch --ff-only
 
-          commit_count=$((RANDOM % 4 + 2))  # Generate a random number between 2 to 5 for commit count.
+          commit_count=$((RANDOM % 4 + 2))
 
           for ((i=1; i<=commit_count; i++)); do
-            # Choose from a list of meaningful commit message prefixes
-            commit_prefix=("Fix" "Add" "Update" "Refactor" "Docs" "Test")
-            # Choose a random prefix from the list
+            commit_prefix=("Fix" "Add Feature" "Update Documentation" "Refactor Code" "Test Changes" "Chore")
             random_prefix=${commit_prefix[$((RANDOM % ${#commit_prefix[@]}))]}
             commit_message="$random_prefix: Automated commit $i of $commit_count at $timestamp by themuuln/auto-committer"
             git commit --allow-empty -m "$commit_message"
