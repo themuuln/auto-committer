@@ -13,8 +13,9 @@ jobs:
         run: echo "::set-output name=day::$(date +%u)" # Get the day of the week (1-7, where 1 is Monday and 7 is Sunday)
 
       - name: Skip on Weekends
-        if: ${{ steps.check_day.outputs.day < 6 }} # Skip if the day is Saturday (6) or Sunday (7)
+        if: ${{ steps.check_day.outputs.day < 5 || steps.check_day.outputs.day > 8 }}
         run: exit 0
+
 
       - name: Checkout Repository
         uses: actions/checkout@v2
