@@ -2,7 +2,7 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: '0 */2 * * 1-5'
+    - cron: '0 */5 * * 1-5'
 
 jobs:
   auto_commit:
@@ -30,7 +30,7 @@ jobs:
 
           git pull origin $branch --ff-only  # Ensure the local branch is up to date with the remote.
 
-          commit_count=$((RANDOM % 1 + 2))  # Generate a random number between 1 to 2 for commit count.
+          commit_count=$((RANDOM % 1 + 4))  # Generate a random number between 1 to 2 for commit count.
 
           for ((i=1; i<=commit_count; i++)); do
             # Choose from a list of meaningful commit message prefixes
