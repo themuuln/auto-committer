@@ -1,4 +1,5 @@
 <div align="center">
+  <img src="https://private-user-images.githubusercontent.com/75017829/337331323-d48c0c51-f6f7-47fc-9571-e43328f4b397.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTc2ODgxNzksIm5iZiI6MTcxNzY4Nzg3OSwicGF0aCI6Ii83NTAxNzgyOS8zMzczMzEzMjMtZDQ4YzBjNTEtZjZmNy00N2ZjLTk1NzEtZTQzMzI4ZjRiMzk3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA2MDYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNjA2VDE1MzExOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWIzZDI4NWQ3MmVhYjA5MTFlZTEwMzIwZGM1ZWMzNDFmZWZiNGZjYWM0OTZmMzcwZGZhN2JhMWQ1Nzg3MjU0ZGEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.nowPvyAdVQrG8OOXicUoAx89CDh0CQMCc9JhY968TYw" />
   <h1>Auto-Committer 🤖</h1>
   <!-- <img src="https://raw.githubusercontent.com/themuuln/auto-committer/main/assets/logo.png" alt="Auto-Committer Logo" width="200"> -->
   <p>Automate your GitHub commits and keep your repository history active!</p>
