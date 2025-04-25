@@ -26,7 +26,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           branch="main"
 
-          timestamp=$(date '+%Y-%m-%d %H:%M:%S')  # Get the current timestamp.
+          timestamp="2005-$(date '+%m-%d %H:%M:%S')"
 
           git pull origin $branch --ff-only  # Ensure the local branch is up to date with the remote.
 
