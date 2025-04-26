@@ -26,11 +26,11 @@ jobs:
           cd $GITHUB_WORKSPACE
           branch="main"
 
-          timestamp="2005-$(date '+%m-%d %H:%M:%S')"
+          timestamp="2025-$(date '+%m-%d %H:%M:%S')"
 
-          git pull origin $branch --ff-only  # Ensure the local branch is up to date with the remote.
+          git pull origin $branch --ff-only
 
-          commit_count=999
+          commit_count=900
 
           for ((i=1; i<=commit_count; i++)); do
             # Choose from a list of meaningful commit message prefixes
