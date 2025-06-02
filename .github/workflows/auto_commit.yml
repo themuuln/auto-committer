@@ -17,8 +17,8 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config --global user.name 'themuuln'
-          git config --global user.email 'zerone.offical@gmail.com'
+          git config --global user.name 'Amgalanbaatar888'
+          git config --global user.email 'amgaahero.gl@gmail.com'
           git config pull.rebase false  # Disable pull rebase to avoid potential conflicts.
 
       - name: Push Random Empty Commits
@@ -37,7 +37,7 @@ jobs:
             commit_prefix=("Fix" "Add" "Update" "Refactor" "Docs" "Test")
             # Choose a random prefix from the list
             random_prefix=${commit_prefix[$((RANDOM % ${#commit_prefix[@]}))]}
-            commit_message="$random_prefix: Automated commit $i of $commit_count at $timestamp by themuuln/auto-committer"
+            commit_message="$random_prefix: Automated commit $i of $commit_count at $timestamp by Amgalanbaatar888/auto-committer"
             git commit --allow-empty -m "$commit_message"
           done
 
