@@ -15,8 +15,8 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config --global user.name 'themuuln'
-          git config --global user.email 'zerone.offical@gmail.com'
+          git config --global user.name 'Amgalanbaatar888'
+          git config --global user.email 'amgaahero.gl@gmail.com'
           git config pull.rebase false  # Disable pull rebase to avoid potential conflicts.
 
       - name: Generate Branch Name
@@ -52,7 +52,7 @@ jobs:
           commit_count=$((RANDOM % 4 + 2))  # Generate a random number between 2 to 5 for commit count.
 
           for ((i=1; i<=commit_count; i++)); do
-            commit_message="Automated empty commit $i of $commit_count at $timestamp by themuuln/auto-committer"
+            commit_message="Automated empty commit $i of $commit_count at $timestamp by Amgalanbaatar888/auto-committer"
             git commit --allow-empty -m "$commit_message"  # Create empty commits with the specified message.
           done
 

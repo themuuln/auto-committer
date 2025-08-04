@@ -2,8 +2,8 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs daily at midnight UTC
-
+    - cron: "0 0 * * *" # Runs every day at midnight UTC
+  workflow_dispatch: # гараар ажиллуулах боломж олгоно
 jobs:
   auto_commit:
     runs-on: ubuntu-latest
@@ -13,12 +13,12 @@ jobs:
         run: echo "::set-output name=day::$(date +%u)" # Get the day of the week (1-7, where 1 is Monday and 7 is Sunday)
 
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Git
         run: |
-          git config --global user.name 'themuuln'
-          git config --global user.email 'zerone.offical@gmail.com'
+          git config --global user.name 'Amgalanbaatar888'
+          git config --global user.email 'amgaahero.gl@gmail.com'
           git config pull.rebase false  # Disable pull rebase to avoid potential conflicts.
 
       - name: Push Random Empty Commits
@@ -37,7 +37,7 @@ jobs:
             commit_prefix=("Fix" "Add" "Update" "Refactor" "Docs" "Test")
             # Choose a random prefix from the list
             random_prefix=${commit_prefix[$((RANDOM % ${#commit_prefix[@]}))]}
-            commit_message="$random_prefix: Automated commit $i of $commit_count at $timestamp by themuuln/auto-committer"
+            commit_message="$random_prefix: Automated commit $i of $commit_count at $timestamp by Amgalanbaatar888/auto-committer"
             git commit --allow-empty -m "$commit_message"
           done
 
